@@ -1,0 +1,332 @@
+/* Основные стили */
+
+body {
+    margin: 0;
+}
+a {
+    text-decoration: inherit;
+    color: inherit;
+}
+/* Стили для шапки */
+header {
+    box-shadow: 0 4px 6px rgba(0,0,0,.15);
+}
+.topMenu,
+.bottomMenu {
+    font-size: 13px;
+    color: #666666;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 18vw;
+}
+.topMenu__right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+nav {
+    display: flex;
+    gap: 20px;
+}
+.btnHeader {
+    padding: 10px 35px;
+    background-color: #0B457F;
+    color: white;
+    border-radius: 12px;
+    border: none;
+    transition: .3s;
+}
+.btnHeader:hover {
+    background-color: #006CD8;
+}
+.burgerMenu {
+    width: 45px;
+    height: 45px;
+    display: none;
+}
+.burgerMenu img {
+    transition: .3s;
+    object-fit: cover;
+}
+.bottomMenu {
+    border-top: 1px solid #CECECE;
+}
+.bottomMenu article {
+    display: flex;
+    gap: 30px;
+}
+/* Иконки к тексту */
+.mapAdress,
+.continue,
+.time {
+    display: flex;
+    cursor: pointer;
+}
+
+.mapAdress::before,
+.time::before,
+.continue::before {
+    content: "";
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+    margin-right: 5px;
+}
+.mapAdress::before {
+    background-image: url("../images/Map.svg");
+}
+.continue::before {
+    background-image: url("../images/Telegram.svg");
+}
+.time:before {
+    background-image: url("../images/Time.svg");
+}
+/* Стили для основной части */
+main {
+    margin: 0 16vw;
+    font-size: 14px;
+}
+h1 {
+    font-weight: inherit;
+    color: #3e3e3e;
+}
+/* Сетка с карточками */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(2, 250px);
+    gap: 15px;
+    grid-template-areas:
+            "card1 card2 card4"
+            "card1 card3 card4";
+}
+/* Стили для карточек и их элементов */
+.card {
+    color: white;
+    padding: 20px 40px;
+    border-radius: 12px;
+    min-height: 250px;
+    background-image: url("../images/bgCard.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+    z-index: 2;
+}
+.card > *:not(img) {
+    z-index: 2;
+}
+.card h3 {
+    font-size: 18px;
+    margin: .5em 0;
+    
+}
+.card button {
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 10px 30px;
+    color: white;
+    border: 2px solid white;
+    width: fit-content;
+    cursor: pointer;
+}
+.card img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    z-index: 0;
+}
+/* Разметка элементов по сетке грида */
+.card:nth-child(1) {
+    grid-area: card1;
+}
+.card:nth-child(2) {
+    grid-area: card2;
+}
+.card:nth-child(2) img:first-of-type {
+    right: 50px;
+    left: auto;
+    bottom: 0;
+}
+.card:nth-child(2) img:last-child {
+    right: 0;
+    left: auto;
+    bottom: 0;
+}
+.card:nth-child(3) {
+    grid-area: card3;
+}
+.card:nth-child(3) img{
+    right: 0;
+    left: auto;
+    width: 40%;
+}
+.card:nth-child(4) {
+    grid-area: card4;
+
+}
+
+dialog {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 3;
+}
+dialog.Active {
+    animation: showModal 1s 1 forwards;
+}
+
+@media screen and (max-width: 1200px) {
+    nav {
+        display: none;
+    }
+    .burgerMenu {
+        display: block;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+    .card:nth-child(2) > img:first-of-type {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 900px){
+    main {
+        margin: 0 10vw;
+    }
+    .topMenu,
+    .bottomMenu {
+        padding: 10px 10vw;
+    }
+
+    .cards {
+        grid-template-areas: "card1 card2"  "card3 card4";
+        grid-template-columns: 1fr 1fr;
+    }
+    .card {
+        grid-area: none;
+        position: relative;
+        z-index: 2;
+        min-height: 200px;
+        line-height: 18px;
+    }
+    .card button {
+        margin-top: auto;
+    }
+    .card img {
+        z-index: -1;
+        right: 20px;
+        left: auto;
+        width: 50%;
+    }
+    .card:nth-child(1) img {
+        left: 50%;
+
+    }
+
+    .card:nth-child(2)  img:last-child {
+        right: -10px;
+    }
+
+}
+
+@media screen and (max-width: 899px) and (min-width: 600px) {
+
+    .topMenu {
+        padding: 10px 44px;
+    }
+    main {
+        margin: 0 44px;
+    }
+    .bottomMenu {
+        display: none;
+    }
+    .cards {
+        grid-template-areas: "card1" "card2" "card3" "card4";
+        grid-template-columns: 1fr;
+    }
+    .card h3,
+    .card p {
+        width: 250px;
+    }
+    .card button {
+        margin-top: 2em;
+    }
+    .card img {
+        max-height: 50%;
+        right: 0.5vw;
+        left: auto;
+    }
+    .card:nth-child(3) img {
+        right: 20%;
+        max-width: 20%;
+    }
+
+}
+
+@media screen and (min-width: 444px) and (max-width: 599px) {
+    .topMenu {
+        padding: 10px 20px;
+    }
+    .bottomMenu,
+    .btnHeader {
+        display: none;
+    }
+    main {
+        margin: 0 20px;
+    }
+
+    .cards {
+        grid-template-areas: "card1" "card2" "card3" "card4";
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 20px;
+    }
+    .card {
+        max-height: 200px;
+        min-height: 100px;
+        padding: 15px;
+        line-height: 18px;
+    }
+    .card p,
+    .card h3 {
+        margin-right: 20%;
+    }
+    .card button {
+        margin-top: 1.5em;
+    }
+    .card img {
+        max-height: 50%;
+        right: 0.5vw;
+        left: auto;
+    }
+
+    .card:nth-child(3) img {
+        right: 10%;
+        max-width: 20%;
+    }
+}
+
+@keyframes showModal {
+    0% {
+        display: block;
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        display: block;
+        transform: translate(-50%, -50%);
+    }
+
+}
